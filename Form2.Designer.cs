@@ -295,7 +295,7 @@
             Controls.Add(editKnocked);
             Controls.Add(editDowned);
             Name = "Settings";
-            Text = "Form2";
+            Text = "Settings";
             ResumeLayout(false);
             PerformLayout();
         }

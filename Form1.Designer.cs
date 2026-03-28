@@ -30,13 +30,13 @@
         {
             SettingWindow = new Button();
             MainWindow = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            txtDowned = new TextBox();
+            txtKnocked = new TextBox();
+            txtFirstStrike = new TextBox();
+            txtRevives = new TextBox();
+            trxtDmgDealt = new TextBox();
+            txtDmgRec = new TextBox();
+            txtLooted = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -46,6 +46,10 @@
             label7 = new Label();
             SaveRoundButton = new Button();
             HistoryButton = new Button();
+            label8 = new Label();
+            label9 = new Label();
+            predictedAgroBox = new TextBox();
+            predictedLobbyBox = new TextBox();
             SuspendLayout();
             // 
             // SettingWindow
@@ -68,54 +72,54 @@
             MainWindow.UseVisualStyleBackColor = true;
             MainWindow.Click += MainWindow_Click;
             // 
-            // textBox1
+            // txtDowned
             // 
-            textBox1.Location = new Point(28, 605);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 23;
+            txtDowned.Location = new Point(28, 605);
+            txtDowned.Name = "txtDowned";
+            txtDowned.Size = new Size(125, 27);
+            txtDowned.TabIndex = 23;
             // 
-            // textBox2
+            // txtKnocked
             // 
-            textBox2.Location = new Point(201, 605);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 24;
+            txtKnocked.Location = new Point(201, 605);
+            txtKnocked.Name = "txtKnocked";
+            txtKnocked.Size = new Size(125, 27);
+            txtKnocked.TabIndex = 24;
             // 
-            // textBox3
+            // txtFirstStrike
             // 
-            textBox3.Location = new Point(374, 605);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 25;
+            txtFirstStrike.Location = new Point(374, 605);
+            txtFirstStrike.Name = "txtFirstStrike";
+            txtFirstStrike.Size = new Size(125, 27);
+            txtFirstStrike.TabIndex = 25;
             // 
-            // textBox4
+            // txtRevives
             // 
-            textBox4.Location = new Point(547, 605);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 26;
+            txtRevives.Location = new Point(547, 605);
+            txtRevives.Name = "txtRevives";
+            txtRevives.Size = new Size(125, 27);
+            txtRevives.TabIndex = 26;
             // 
-            // textBox5
+            // trxtDmgDealt
             // 
-            textBox5.Location = new Point(720, 605);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 27;
+            trxtDmgDealt.Location = new Point(720, 605);
+            trxtDmgDealt.Name = "trxtDmgDealt";
+            trxtDmgDealt.Size = new Size(125, 27);
+            trxtDmgDealt.TabIndex = 27;
             // 
-            // textBox6
+            // txtDmgRec
             // 
-            textBox6.Location = new Point(893, 605);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(125, 27);
-            textBox6.TabIndex = 28;
+            txtDmgRec.Location = new Point(893, 605);
+            txtDmgRec.Name = "txtDmgRec";
+            txtDmgRec.Size = new Size(125, 27);
+            txtDmgRec.TabIndex = 28;
             // 
-            // textBox7
+            // txtLooted
             // 
-            textBox7.Location = new Point(1066, 605);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(125, 27);
-            textBox7.TabIndex = 29;
+            txtLooted.Location = new Point(1066, 605);
+            txtLooted.Name = "txtLooted";
+            txtLooted.Size = new Size(125, 27);
+            txtLooted.TabIndex = 29;
             // 
             // label1
             // 
@@ -182,9 +186,9 @@
             // 
             // SaveRoundButton
             // 
-            SaveRoundButton.Location = new Point(400, 663);
+            SaveRoundButton.Location = new Point(471, 666);
             SaveRoundButton.Name = "SaveRoundButton";
-            SaveRoundButton.Size = new Size(301, 29);
+            SaveRoundButton.Size = new Size(272, 29);
             SaveRoundButton.TabIndex = 37;
             SaveRoundButton.Text = "Save Round";
             SaveRoundButton.UseVisualStyleBackColor = true;
@@ -199,11 +203,49 @@
             HistoryButton.Text = "History";
             HistoryButton.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F);
+            label8.Location = new Point(243, 137);
+            label8.Name = "label8";
+            label8.Size = new Size(184, 28);
+            label8.TabIndex = 39;
+            label8.Text = "Current Agro Score:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F);
+            label9.Location = new Point(810, 137);
+            label9.Name = "label9";
+            label9.Size = new Size(159, 28);
+            label9.TabIndex = 40;
+            label9.Text = "Predicted Lobby:";
+            // 
+            // predictedAgroBox
+            // 
+            predictedAgroBox.Location = new Point(243, 183);
+            predictedAgroBox.Name = "predictedAgroBox";
+            predictedAgroBox.Size = new Size(184, 27);
+            predictedAgroBox.TabIndex = 41;
+            // 
+            // predictedLobbyBox
+            // 
+            predictedLobbyBox.Location = new Point(810, 183);
+            predictedLobbyBox.Name = "predictedLobbyBox";
+            predictedLobbyBox.Size = new Size(184, 27);
+            predictedLobbyBox.TabIndex = 42;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1237, 741);
+            Controls.Add(predictedLobbyBox);
+            Controls.Add(predictedAgroBox);
+            Controls.Add(label9);
+            Controls.Add(label8);
             Controls.Add(HistoryButton);
             Controls.Add(SaveRoundButton);
             Controls.Add(label7);
@@ -213,13 +255,13 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtLooted);
+            Controls.Add(txtDmgRec);
+            Controls.Add(trxtDmgDealt);
+            Controls.Add(txtRevives);
+            Controls.Add(txtFirstStrike);
+            Controls.Add(txtKnocked);
+            Controls.Add(txtDowned);
             Controls.Add(MainWindow);
             Controls.Add(SettingWindow);
             Name = "Form1";
@@ -232,13 +274,13 @@
 
         private Button SettingWindow;
         private Button MainWindow;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox txtDowned;
+        private TextBox txtKnocked;
+        private TextBox txtFirstStrike;
+        private TextBox txtRevives;
+        private TextBox trxtDmgDealt;
+        private TextBox txtDmgRec;
+        private TextBox txtLooted;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -248,5 +290,9 @@
         private Label label7;
         private Button SaveRoundButton;
         private Button HistoryButton;
+        private Label label8;
+        private Label label9;
+        private TextBox predictedAgroBox;
+        private TextBox predictedLobbyBox;
     }
 }
