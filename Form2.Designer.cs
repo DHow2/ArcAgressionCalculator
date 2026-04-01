@@ -188,6 +188,7 @@
             HistoryButton.TabIndex = 39;
             HistoryButton.Text = "History";
             HistoryButton.UseVisualStyleBackColor = true;
+            HistoryButton.Click += HistoryButton_Click;
             // 
             // SaveSettingsButton
             // 

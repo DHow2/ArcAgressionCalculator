@@ -63,5 +63,10 @@ namespace Arc
         {
 
         }
+
+        private void HistoryButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

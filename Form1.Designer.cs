@@ -202,6 +202,7 @@
             HistoryButton.TabIndex = 38;
             HistoryButton.Text = "History";
             HistoryButton.UseVisualStyleBackColor = true;
+            HistoryButton.Click += HistoryButton_Click;
             // 
             // label8
             // 

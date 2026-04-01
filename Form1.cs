@@ -53,16 +53,22 @@ namespace Arc
 
             predictedAgroBox.Text = matchScore.ToString("0.00");
 
+            //placeholder
             if (matchScore > 150)
             {
-                predictedLobbyBox.Text = "High Aggro (Sweaty)";
+                //placeholder
+                predictedLobbyBox.Text = "High Aggro (Ramge Lobbies)";
             }
             else
             {
+                //placeholder
                 predictedLobbyBox.Text = "Standard";
             }
         }
 
-       
+        private void HistoryButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
