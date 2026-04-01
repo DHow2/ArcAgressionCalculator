@@ -34,7 +34,7 @@
             txtKnocked = new TextBox();
             txtFirstStrike = new TextBox();
             txtRevives = new TextBox();
-            trxtDmgDealt = new TextBox();
+            txtDmgDealt = new TextBox();
             txtDmgRec = new TextBox();
             txtLooted = new TextBox();
             label1 = new Label();
@@ -60,7 +60,7 @@
             SettingWindow.TabIndex = 0;
             SettingWindow.Text = "Settings";
             SettingWindow.UseVisualStyleBackColor = true;
-            SettingWindow.Click += button1_Click;
+            SettingWindow.Click += SettingWindow_Click;
             // 
             // MainWindow
             // 
@@ -100,12 +100,12 @@
             txtRevives.Size = new Size(125, 27);
             txtRevives.TabIndex = 26;
             // 
-            // trxtDmgDealt
+            // txtDmgDealt
             // 
-            trxtDmgDealt.Location = new Point(720, 605);
-            trxtDmgDealt.Name = "trxtDmgDealt";
-            trxtDmgDealt.Size = new Size(125, 27);
-            trxtDmgDealt.TabIndex = 27;
+            txtDmgDealt.Location = new Point(720, 605);
+            txtDmgDealt.Name = "txtDmgDealt";
+            txtDmgDealt.Size = new Size(125, 27);
+            txtDmgDealt.TabIndex = 27;
             // 
             // txtDmgRec
             // 
@@ -257,7 +257,7 @@
             Controls.Add(label1);
             Controls.Add(txtLooted);
             Controls.Add(txtDmgRec);
-            Controls.Add(trxtDmgDealt);
+            Controls.Add(txtDmgDealt);
             Controls.Add(txtRevives);
             Controls.Add(txtFirstStrike);
             Controls.Add(txtKnocked);
@@ -278,7 +278,7 @@
         private TextBox txtKnocked;
         private TextBox txtFirstStrike;
         private TextBox txtRevives;
-        private TextBox trxtDmgDealt;
+        private TextBox txtDmgDealt;
         private TextBox txtDmgRec;
         private TextBox txtLooted;
         private Label label1;

@@ -28,20 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            editDowned = new Button();
-            editKnocked = new Button();
-            editFirst = new Button();
-            EditDMG = new Button();
-            EditDMGRec = new Button();
-            editLooted = new Button();
             textDowned = new TextBox();
             textKnocked = new TextBox();
             textRev = new TextBox();
             textDMG = new TextBox();
             textDMGRec = new TextBox();
             textLooted = new TextBox();
-            editRev = new Button();
-            textBox1 = new TextBox();
+            textFirst = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -52,67 +45,8 @@
             MainWindow = new Button();
             SettingWindow = new Button();
             HistoryButton = new Button();
+            SaveSettingsButton = new Button();
             SuspendLayout();
-            // 
-            // editDowned
-            // 
-            editDowned.Location = new Point(425, 82);
-            editDowned.Name = "editDowned";
-            editDowned.Size = new Size(94, 29);
-            editDowned.TabIndex = 0;
-            editDowned.Text = "Edit";
-            editDowned.UseVisualStyleBackColor = true;
-            editDowned.Click += editDowned_Click;
-            // 
-            // editKnocked
-            // 
-            editKnocked.Location = new Point(425, 157);
-            editKnocked.Name = "editKnocked";
-            editKnocked.Size = new Size(94, 29);
-            editKnocked.TabIndex = 1;
-            editKnocked.Text = "Edit";
-            editKnocked.UseVisualStyleBackColor = true;
-            editKnocked.Click += editKnocked_Click;
-            // 
-            // editFirst
-            // 
-            editFirst.Location = new Point(425, 233);
-            editFirst.Name = "editFirst";
-            editFirst.Size = new Size(94, 29);
-            editFirst.TabIndex = 2;
-            editFirst.Text = "Edit";
-            editFirst.UseVisualStyleBackColor = true;
-            editFirst.Click += editFirst_Click;
-            // 
-            // EditDMG
-            // 
-            EditDMG.Location = new Point(425, 400);
-            EditDMG.Name = "EditDMG";
-            EditDMG.Size = new Size(94, 29);
-            EditDMG.TabIndex = 3;
-            EditDMG.Text = "Edit";
-            EditDMG.UseVisualStyleBackColor = true;
-            EditDMG.Click += EditDMG_Click;
-            // 
-            // EditDMGRec
-            // 
-            EditDMGRec.Location = new Point(425, 491);
-            EditDMGRec.Name = "EditDMGRec";
-            EditDMGRec.Size = new Size(94, 29);
-            EditDMGRec.TabIndex = 4;
-            EditDMGRec.Text = "Edit";
-            EditDMGRec.UseVisualStyleBackColor = true;
-            EditDMGRec.Click += EditDMGRec_Click;
-            // 
-            // editLooted
-            // 
-            editLooted.Location = new Point(425, 607);
-            editLooted.Name = "editLooted";
-            editLooted.Size = new Size(94, 29);
-            editLooted.TabIndex = 5;
-            editLooted.Text = "Edit";
-            editLooted.UseVisualStyleBackColor = true;
-            editLooted.Click += editLooted_Click;
             // 
             // textDowned
             // 
@@ -156,22 +90,12 @@
             textLooted.Size = new Size(125, 27);
             textLooted.TabIndex = 11;
             // 
-            // editRev
+            // textFirst
             // 
-            editRev.Location = new Point(425, 312);
-            editRev.Name = "editRev";
-            editRev.Size = new Size(94, 29);
-            editRev.TabIndex = 12;
-            editRev.Text = "Edit";
-            editRev.UseVisualStyleBackColor = true;
-            editRev.Click += editRev_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(159, 235);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 13;
+            textFirst.Location = new Point(159, 235);
+            textFirst.Name = "textFirst";
+            textFirst.Size = new Size(125, 27);
+            textFirst.TabIndex = 13;
             // 
             // label1
             // 
@@ -265,11 +189,22 @@
             HistoryButton.Text = "History";
             HistoryButton.UseVisualStyleBackColor = true;
             // 
+            // SaveSettingsButton
+            // 
+            SaveSettingsButton.Location = new Point(12, 733);
+            SaveSettingsButton.Name = "SaveSettingsButton";
+            SaveSettingsButton.Size = new Size(562, 60);
+            SaveSettingsButton.TabIndex = 40;
+            SaveSettingsButton.Text = "Save  Settings";
+            SaveSettingsButton.UseVisualStyleBackColor = true;
+            SaveSettingsButton.Click += SaveSettingsButton_Click;
+            // 
             // Settings
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(586, 828);
+            Controls.Add(SaveSettingsButton);
             Controls.Add(HistoryButton);
             Controls.Add(SettingWindow);
             Controls.Add(MainWindow);
@@ -280,42 +215,28 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox1);
-            Controls.Add(editRev);
+            Controls.Add(textFirst);
             Controls.Add(textLooted);
             Controls.Add(textDMGRec);
             Controls.Add(textDMG);
             Controls.Add(textRev);
             Controls.Add(textKnocked);
             Controls.Add(textDowned);
-            Controls.Add(editLooted);
-            Controls.Add(EditDMGRec);
-            Controls.Add(EditDMG);
-            Controls.Add(editFirst);
-            Controls.Add(editKnocked);
-            Controls.Add(editDowned);
             Name = "Settings";
             Text = "Settings";
+            Load += Settings_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button editDowned;
-        private Button editKnocked;
-        private Button editFirst;
-        private Button EditDMG;
-        private Button EditDMGRec;
-        private Button editLooted;
         private TextBox textDowned;
         private TextBox textKnocked;
         private TextBox textRev;
         private TextBox textDMG;
         private TextBox textDMGRec;
         private TextBox textLooted;
-        private Button editRev;
-        private TextBox textBox1;
+        private TextBox textFirst;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -326,5 +247,6 @@
         private Button MainWindow;
         private Button SettingWindow;
         private Button HistoryButton;
+        private Button SaveSettingsButton;
     }
 }

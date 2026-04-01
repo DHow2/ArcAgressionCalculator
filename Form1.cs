@@ -9,26 +9,38 @@ namespace Arc
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void MainWindow_Click(object sender, EventArgs e)
         {
 
         }
 
+        private void SettingWindow_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the Settings form
+            Settings settingsPage = new Settings();
+
+            // Hide the Main Window before showing the Settings page
+            this.Hide();
+
+            // Shows the Settings page
+            // ShowDialog()  displays the settings page until it is closed, preventing the Main Window from showing up again until it is closed
+            settingsPage.ShowDialog();
+
+            // After the Settings page is closed, unhide the Main Window again
+            this.Show();
+        }
+
         private void SaveRoundButton_Click(object sender, EventArgs e)
         {
-            AggroSettings settings = AggroSettings.LoadFromFile();
+            string settingsFilePath = "settings.json";
+            AggroSettings settings = AggroSettings.LoadFromFile(settingsFilePath);
             double downed = 0, knocked = 0, firstStrike = 0, revives = 0;
             double dmgDealt = 0, dmgReceived = 0, looted = 0;
             double.TryParse(txtDowned.Text, out downed);
             double.TryParse(txtKnocked.Text, out knocked);
             double.TryParse(txtFirstStrike.Text, out firstStrike);
             double.TryParse(txtRevives.Text, out revives);
-            double.TryParse(trxtDmgDealt.Text, out dmgDealt);
+            double.TryParse(txtDmgDealt.Text, out dmgDealt);
             double.TryParse(txtDmgRec.Text, out dmgReceived);
             double.TryParse(txtLooted.Text, out looted);
             double matchScore = (downed * settings.DownedMultiplier) +
@@ -50,5 +62,7 @@ namespace Arc
                 predictedLobbyBox.Text = "Standard";
             }
         }
+
+       
     }
 }

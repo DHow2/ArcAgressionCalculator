@@ -17,14 +17,24 @@ namespace Arc
         public double DmgReceivedMultiplier { get; set; } = -0.1;
         public double LootedMultiplier { get; set; } = 10.0;
 
-        public static AggroSettings LoadFromFile()
+        public void SaveToFile(string filePath)
         {
-            string path = "settings.json";
-            if (File.Exists(path))
+            // ->WriteIndented makes JSON easily readable with notepad++
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(this, options);
+            File.WriteAllText(filePath, jsonString);
+        }
+
+        public static AggroSettings LoadFromFile(string filePath)
+        {
+            if (File.Exists(filePath))
             {
-                string jsonString = File.ReadAllText(path);
-                return JsonSerializer.Deserialize<AggroSettings>(jsonString);
+                string jsonString = File.ReadAllText(filePath);
+                // -> ?? --> fall back to default if JSON file is empty
+                return JsonSerializer.Deserialize<AggroSettings>(jsonString) ?? new AggroSettings();
             }
+
+            // else -> if no file found return default settings
             return new AggroSettings();
         }
     }
