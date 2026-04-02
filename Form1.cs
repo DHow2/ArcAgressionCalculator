@@ -1,4 +1,7 @@
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text.Json;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Arc
 {
@@ -64,11 +67,55 @@ namespace Arc
                 //placeholder
                 predictedLobbyBox.Text = "Standard";
             }
+
+            if (RaiderNameBox.Text.Trim().Equals("Ramge", StringComparison.OrdinalIgnoreCase))
+            {
+                predictedLobbyBox.Text = "Extreme PVP Lobby";
+            }
+
+            {
+
+                // Create a new Record with the current data.
+                MatchRecord currentMatch = new MatchRecord
+                {
+                    RaiderName = RaiderNameBox.Text.Trim(),
+                    AggroScore = matchScore,
+                    PredictedLobby = predictedLobbyBox.Text,
+                    Downed = downed,
+                    KnockedOut = knocked,
+                    FirstStrikes = firstStrike,
+                    Revives = revives,
+                    DmgDealt = dmgDealt,
+                    DmgReceived = dmgReceived,
+                    Looted = looted
+                };
+
+                // Prepare list and set file path
+                string historyFilePath = "history.json";
+                List<MatchRecord> matchHistory = new List<MatchRecord>();
+
+                // Load if it exists, otherwise we'll just start with an empty list
+                if (File.Exists(historyFilePath))
+                {
+                    string json = File.ReadAllText(historyFilePath);
+                    matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
+                }
+
+                // Add new match to the list
+                matchHistory.Add(currentMatch);
+
+                // Save updated list back to file. 
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                File.WriteAllText(historyFilePath, JsonSerializer.Serialize(matchHistory, options));
+            }
         }
 
         private void HistoryButton_Click(object sender, EventArgs e)
         {
-
+            History historyPage = new History();
+            this.Hide();
+            historyPage.ShowDialog();
+            this.Show();
         }
     }
 }

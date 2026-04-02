@@ -50,6 +50,8 @@
             label9 = new Label();
             predictedAgroBox = new TextBox();
             predictedLobbyBox = new TextBox();
+            label10 = new Label();
+            RaiderNameBox = new TextBox();
             SuspendLayout();
             // 
             // SettingWindow
@@ -208,7 +210,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F);
-            label8.Location = new Point(243, 137);
+            label8.Location = new Point(241, 252);
             label8.Name = "label8";
             label8.Size = new Size(184, 28);
             label8.TabIndex = 39;
@@ -218,7 +220,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F);
-            label9.Location = new Point(810, 137);
+            label9.Location = new Point(808, 252);
             label9.Name = "label9";
             label9.Size = new Size(159, 28);
             label9.TabIndex = 40;
@@ -226,23 +228,43 @@
             // 
             // predictedAgroBox
             // 
-            predictedAgroBox.Location = new Point(243, 183);
+            predictedAgroBox.Location = new Point(241, 298);
             predictedAgroBox.Name = "predictedAgroBox";
             predictedAgroBox.Size = new Size(184, 27);
             predictedAgroBox.TabIndex = 41;
             // 
             // predictedLobbyBox
             // 
-            predictedLobbyBox.Location = new Point(810, 183);
+            predictedLobbyBox.Location = new Point(808, 298);
             predictedLobbyBox.Name = "predictedLobbyBox";
             predictedLobbyBox.Size = new Size(184, 27);
             predictedLobbyBox.TabIndex = 42;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(42, 78);
+            label10.Name = "label10";
+            label10.Size = new Size(45, 20);
+            label10.TabIndex = 43;
+            label10.Text = "Hello";
+            // 
+            // RaiderNameBox
+            // 
+            RaiderNameBox.Location = new Point(93, 75);
+            RaiderNameBox.Name = "RaiderNameBox";
+            RaiderNameBox.Size = new Size(125, 27);
+            RaiderNameBox.TabIndex = 44;
+            RaiderNameBox.Text = "Raider";
+            RaiderNameBox.TextAlign = HorizontalAlignment.Center;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1237, 741);
+            Controls.Add(RaiderNameBox);
+            Controls.Add(label10);
             Controls.Add(predictedLobbyBox);
             Controls.Add(predictedAgroBox);
             Controls.Add(label9);
@@ -295,5 +317,7 @@
         private Label label9;
         private TextBox predictedAgroBox;
         private TextBox predictedLobbyBox;
+        private Label label10;
+        private TextBox RaiderNameBox;
     }
 }

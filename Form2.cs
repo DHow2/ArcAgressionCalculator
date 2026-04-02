@@ -38,7 +38,7 @@ namespace Arc
         {
             AggroSettings updatedSettings = new AggroSettings();
 
-            // Note to self: Fucktard, merk dir TryParse!!!
+            // Note to self: remember TryParse!!!
             if (double.TryParse(textDowned.Text, out double downed)) updatedSettings.DownedMultiplier = downed;
             if (double.TryParse(textKnocked.Text, out double knocked)) updatedSettings.KnockedMultiplier = knocked;
             if (double.TryParse(textFirst.Text, out double first)) updatedSettings.FirstStrikeMultiplier = first;
@@ -66,7 +66,10 @@ namespace Arc
 
         private void HistoryButton_Click(object sender, EventArgs e)
         {
-
+            History historyPage = new History();
+            this.Close();
+            historyPage.ShowDialog();
+            this.Show();
         }
     }
 }
