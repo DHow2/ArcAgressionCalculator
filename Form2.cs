@@ -38,7 +38,7 @@ namespace Arc
         {
             AggroSettings updatedSettings = new AggroSettings();
 
-            // Note to self: remember TryParse!!!
+            // Note to self: Fucktard, remember TryParse!!!
             if (double.TryParse(textDowned.Text, out double downed)) updatedSettings.DownedMultiplier = downed;
             if (double.TryParse(textKnocked.Text, out double knocked)) updatedSettings.KnockedMultiplier = knocked;
             if (double.TryParse(textFirst.Text, out double first)) updatedSettings.FirstStrikeMultiplier = first;

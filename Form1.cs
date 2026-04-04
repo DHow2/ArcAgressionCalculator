@@ -26,7 +26,7 @@ namespace Arc
             this.Hide();
 
             // Shows the Settings page
-            // ShowDialog()  displays the settings page until it is closed, preventing the Main Window from showing up again until it is closed
+            // !!ShowDialog()  displays the settings page until it is closed, preventing the Main Window from showing up again until it is closed!!
             settingsPage.ShowDialog();
 
             // After the Settings page is closed, unhide the Main Window again
@@ -35,10 +35,14 @@ namespace Arc
 
         private void SaveRoundButton_Click(object sender, EventArgs e)
         {
+            // Load settings
             string settingsFilePath = "settings.json";
             AggroSettings settings = AggroSettings.LoadFromFile(settingsFilePath);
+
+            // Parse
             double downed = 0, knocked = 0, firstStrike = 0, revives = 0;
             double dmgDealt = 0, dmgReceived = 0, looted = 0;
+
             double.TryParse(txtDowned.Text, out downed);
             double.TryParse(txtKnocked.Text, out knocked);
             double.TryParse(txtFirstStrike.Text, out firstStrike);
@@ -46,68 +50,92 @@ namespace Arc
             double.TryParse(txtDmgDealt.Text, out dmgDealt);
             double.TryParse(txtDmgRec.Text, out dmgReceived);
             double.TryParse(txtLooted.Text, out looted);
-            double matchScore = (downed * settings.DownedMultiplier) +
-                                (knocked * settings.KnockedMultiplier) +
-                                (firstStrike * settings.FirstStrikeMultiplier) +
-                                (revives * settings.RevivedMultiplier) +
-                                (dmgDealt * settings.DmgInflictedMultiplier) +
-                                (dmgReceived * settings.DmgReceivedMultiplier) +
-                                (looted * settings.LootedMultiplier);
 
-            predictedAgroBox.Text = matchScore.ToString("0.00");
+            // Calculate THIS round's score
+            double currentMatchScore = (downed * settings.DownedMultiplier) +
+                                       (knocked * settings.KnockedMultiplier) +
+                                       (firstStrike * settings.FirstStrikeMultiplier) +
+                                       (revives * settings.RevivedMultiplier) +
+                                       (dmgDealt * settings.DmgInflictedMultiplier) +
+                                       (dmgReceived * settings.DmgReceivedMultiplier) +
+                                       (looted * settings.LootedMultiplier);
 
-            //placeholder
-            if (matchScore > 150)
+            // Create MatchRecord for this round
+            MatchRecord currentMatch = new MatchRecord
             {
-                //placeholder
-                predictedLobbyBox.Text = "High Aggro (Ramge Lobbies)";
+                RaiderName = RaiderNameBox.Text.Trim(),
+                AggroScore = currentMatchScore,
+                Downed = downed,
+                KnockedOut = knocked,
+                FirstStrikes = firstStrike,
+                Revives = revives,
+                DmgDealt = dmgDealt,
+                DmgReceived = dmgReceived,
+                Looted = looted
+            };
+
+            // Load History and add this match
+            string historyFilePath = "history.json";
+            List<MatchRecord> matchHistory = new List<MatchRecord>();
+
+            if (File.Exists(historyFilePath))
+            {
+                string json = File.ReadAllText(historyFilePath);
+                matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
+            }
+            matchHistory.Add(currentMatch);
+
+            // Calculate Rolling Average
+            int n = settings.RollingAverageCount;
+
+            double rollingAverage = matchHistory
+                .TakeLast(n)
+                .Average(m => m.AggroScore);
+
+            // Update UI with the AVERAGE Score
+            predictedAgroBox.Text = rollingAverage.ToString("0.00");
+
+            if (rollingAverage < 10)
+            {
+                predictedLobbyBox.Text = "Carebear Lobby";
+            }
+            else if (rollingAverage < 25)
+            {
+                predictedLobbyBox.Text = "Mostly PVE Lobby";
+            }
+            else if (rollingAverage < 45)
+            {
+                predictedLobbyBox.Text = "Mixed Lobby";
+            }
+            else if (rollingAverage < 70)
+            {
+                predictedLobbyBox.Text = "Mostly PVP Lobby";
             }
             else
             {
-                //placeholder
-                predictedLobbyBox.Text = "Standard";
+                predictedLobbyBox.Text = "Pure PVP Lobby";
             }
 
+            // RAMGI! :D
             if (RaiderNameBox.Text.Trim().Equals("Ramge", StringComparison.OrdinalIgnoreCase))
             {
                 predictedLobbyBox.Text = "Extreme PVP Lobby";
             }
 
-            {
+            // Finalize current MatchRecord with lobby prediction and save to JSON
+            currentMatch.PredictedLobby = predictedLobbyBox.Text;
 
-                // Create a new Record with the current data.
-                MatchRecord currentMatch = new MatchRecord
-                {
-                    RaiderName = RaiderNameBox.Text.Trim(),
-                    AggroScore = matchScore,
-                    PredictedLobby = predictedLobbyBox.Text,
-                    Downed = downed,
-                    KnockedOut = knocked,
-                    FirstStrikes = firstStrike,
-                    Revives = revives,
-                    DmgDealt = dmgDealt,
-                    DmgReceived = dmgReceived,
-                    Looted = looted
-                };
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            File.WriteAllText(historyFilePath, JsonSerializer.Serialize(matchHistory, options));
 
-                // Prepare list and set file path
-                string historyFilePath = "history.json";
-                List<MatchRecord> matchHistory = new List<MatchRecord>();
-
-                // Load if it exists, otherwise we'll just start with an empty list
-                if (File.Exists(historyFilePath))
-                {
-                    string json = File.ReadAllText(historyFilePath);
-                    matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
-                }
-
-                // Add new match to the list
-                matchHistory.Add(currentMatch);
-
-                // Save updated list back to file. 
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                File.WriteAllText(historyFilePath, JsonSerializer.Serialize(matchHistory, options));
-            }
+            // Clear Boxes
+            txtDowned.Clear();
+            txtKnocked.Clear();
+            txtFirstStrike.Clear();
+            txtRevives.Clear();
+            txtDmgDealt.Clear();
+            txtDmgRec.Clear();
+            txtLooted.Clear();
         }
 
         private void HistoryButton_Click(object sender, EventArgs e)

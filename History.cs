@@ -23,20 +23,19 @@ namespace Arc
 
         private void History_Load(object sender, EventArgs e)
         {
-            // 1. Check if the history file exists yet
+            // Check if the history file exists
             if (File.Exists(historyFilePath))
             {
-                // 2. Read the file and convert it back into a List of MatchRecords
+                // Read the file and convert it back into a List of MatchRecords
                 string json = File.ReadAllText(historyFilePath);
                 List<MatchRecord> matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
 
-                // 3. The Magic Step: Bind the list directly to the grid!
-                // The DataGridView is smart enough to read the properties of MatchRecord and create columns automatically.
+                // //binding the List of MatchRecords to the DataGridView
                 historyGridView.DataSource = matchHistory;
             }
         }
 
-        // --- Navigation Logic ---
+        // Navigation Logic
         private void MainWindow_Click(object sender, EventArgs e)
         {
             this.Close(); // Closes History, unhiding Main

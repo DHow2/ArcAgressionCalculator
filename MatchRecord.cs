@@ -8,13 +8,10 @@ namespace Arc
 {
     public class MatchRecord
     {
-        // DateTime automatically grabs the exact date and time the match was saved
         public DateTime Date { get; set; } = DateTime.Now;
         public string RaiderName { get; set; } = string.Empty;
         public double AggroScore { get; set; }
         public string PredictedLobby { get; set; } = string.Empty;
-
-        // The raw stats
         public double Downed { get; set; }
         public double KnockedOut { get; set; }
         public double FirstStrikes { get; set; }
