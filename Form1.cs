@@ -35,6 +35,63 @@ namespace Arc
 
         private void SaveRoundButton_Click(object sender, EventArgs e)
         {
+            // OVERRIDE LOGIC ---> For Testing Purposes ONLY! (Allows you to inject 10 fake matches with a custom Aggro Score by just filling the "Predicted Aggro Score" box and leaving all others blank, then clicking "Save Round". This is useful for testing the lobby prediction logic and the rolling average calculation without having to manually enter stats for multiple matches. The injected matches will have the Raider Name "OVERRIDE" and will be saved to the same history.json file, so they will appear in the History page as well. You can easily identify them by filtering for the "TEST_OVERRIDE" Raider Name in the History page.)
+            if (!string.IsNullOrWhiteSpace(predictedAgroBox.Text) &&
+                string.IsNullOrWhiteSpace(txtDowned.Text) &&
+                string.IsNullOrWhiteSpace(txtKnocked.Text) &&
+                string.IsNullOrWhiteSpace(txtFirstStrike.Text) &&
+                string.IsNullOrWhiteSpace(txtRevives.Text) &&
+                string.IsNullOrWhiteSpace(txtDmgDealt.Text) &&
+                string.IsNullOrWhiteSpace(txtDmgRec.Text) &&
+                string.IsNullOrWhiteSpace(txtLooted.Text))
+            {
+                if (double.TryParse(predictedAgroBox.Text, out double manualScore))
+                {
+                    // Load History
+                    string testHistoryFilePath = "history.json";
+                    List<MatchRecord> testMatchHistory = new List<MatchRecord>();
+
+                    if (File.Exists(testHistoryFilePath))
+                    {
+                        string json = File.ReadAllText(testHistoryFilePath);
+                        testMatchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
+                    }
+
+                    string manualLobby = "Standard";
+                    if (manualScore < 10) manualLobby = "Carebear Lobby";
+                    else if (manualScore < 25) manualLobby = "Mostly PVE Lobby";
+                    else if (manualScore < 45) manualLobby = "Mixed Lobby";
+                    else if (manualScore < 70) manualLobby = "Mostly PVP Lobby";
+                    else manualLobby = "Pure PVP Lobby";
+
+                    if (RaiderNameBox.Text.Trim().Equals("Ramge", StringComparison.OrdinalIgnoreCase))
+                    {
+                        manualLobby = "Extreme PVP Lobby";
+                    }
+
+                    // Create 10 fake matches
+                    for (int i = 0; i < 10; i++)
+                    {
+                        testMatchHistory.Add(new MatchRecord
+                        {
+                            RaiderName = "OVERRIDE",
+                            AggroScore = manualScore,
+                            PredictedLobby = manualLobby,
+                        });
+                    }
+
+                    // Save back to JSON
+                    var testOptions = new JsonSerializerOptions { WriteIndented = true };
+                    File.WriteAllText(testHistoryFilePath, JsonSerializer.Serialize(testMatchHistory, testOptions));
+
+                    // Update UI
+                    predictedLobbyBox.Text = manualLobby;
+                    MessageBox.Show($"Successfully injected 10 fake matches with an Aggro Score of {manualScore}.", "Testing Override Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+            // --- END OVERRIDE LOGIC ---
+
             // Load settings
             string settingsFilePath = "settings.json";
             AggroSettings settings = AggroSettings.LoadFromFile(settingsFilePath);
