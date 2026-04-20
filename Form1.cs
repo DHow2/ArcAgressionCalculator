@@ -60,6 +60,18 @@ namespace Arc
                                        (dmgReceived * settings.DmgReceivedMultiplier) +
                                        (looted * settings.LootedMultiplier);
 
+            // Deduct Agro if zero DMG was dealt in a match
+            if (dmgDealt == 0)
+            {
+                currentMatchScore += settings.ZeroDamage; 
+            }
+
+            // Prevent Scores below zero.
+            if (currentMatchScore < 0)
+            {
+                currentMatchScore = 0;
+            }
+
             // Create MatchRecord for this round
             MatchRecord currentMatch = new MatchRecord
             {

@@ -32,6 +32,7 @@ namespace Arc
             textDMG.Text = currentSettings.DmgInflictedMultiplier.ToString();
             textDMGRec.Text = currentSettings.DmgReceivedMultiplier.ToString();
             textLooted.Text = currentSettings.LootedMultiplier.ToString();
+            textZeroDMG.Text = currentSettings.ZeroDamage.ToString();
         }
 
         private void SaveSettingsButton_Click(object sender, EventArgs e)
@@ -46,6 +47,8 @@ namespace Arc
             if (double.TryParse(textDMG.Text, out double dmg)) updatedSettings.DmgInflictedMultiplier = dmg;
             if (double.TryParse(textDMGRec.Text, out double dmgRec)) updatedSettings.DmgReceivedMultiplier = dmgRec;
             if (double.TryParse(textLooted.Text, out double looted)) updatedSettings.LootedMultiplier = looted;
+            if (double.TryParse(textZeroDMG.Text, out double ZeroDamage)) updatedSettings.ZeroDamage = ZeroDamage;
+
 
             // Save to JSON file
             updatedSettings.SaveToFile(settingsFilePath);

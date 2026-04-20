@@ -17,6 +17,7 @@ namespace Arc
         public double DmgReceivedMultiplier { get; set; } = -0.1;
         public double LootedMultiplier { get; set; } = 10.0;
         public int RollingAverageCount { get; set; } = 10;
+        public double ZeroDamage { get; set; } = -20.0;
 
         public void SaveToFile(string filePath)
         {
