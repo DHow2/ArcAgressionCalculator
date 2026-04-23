@@ -71,14 +71,14 @@
             historyGridView.Location = new Point(2, 54);
             historyGridView.Name = "historyGridView";
             historyGridView.RowHeadersWidth = 51;
-            historyGridView.Size = new Size(1516, 669);
+            historyGridView.Size = new Size(1453, 1365);
             historyGridView.TabIndex = 42;
             // 
             // History
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1512, 722);
+            ClientSize = new Size(1454, 1418);
             Controls.Add(historyGridView);
             Controls.Add(HistoryButton);
             Controls.Add(MainWindow);

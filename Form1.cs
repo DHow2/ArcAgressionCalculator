@@ -126,19 +126,6 @@ namespace Arc
                 currentMatchScore = 0;
             }
 
-            // Create MatchRecord for this round
-            MatchRecord currentMatch = new MatchRecord
-            {
-                RaiderName = RaiderNameBox.Text.Trim(),
-                AggroScore = currentMatchScore,
-                Downed = downed,
-                KnockedOut = knocked,
-                Revives = revives,
-                DmgDealt = dmgDealt,
-                DmgReceived = dmgReceived,
-                Looted = looted
-            };
-
             // Load History and add this match
             string historyFilePath = "history.json";
             List<MatchRecord> matchHistory = new List<MatchRecord>();
@@ -148,6 +135,31 @@ namespace Arc
                 string json = File.ReadAllText(historyFilePath);
                 matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
             }
+
+            // Calculate Score Difference from previous match
+            double scoreDiff = 0;
+
+            if (matchHistory.Count > 0)
+            {
+                MatchRecord previousMatch = matchHistory.Last();
+                scoreDiff = currentMatchScore - previousMatch.AggroScore;
+            }
+
+            // Create MatchRecord for this round
+            MatchRecord currentMatch = new MatchRecord
+            {
+                RaiderName = RaiderNameBox.Text.Trim(),
+                AggroScore = currentMatchScore,
+                ScoreDifference = scoreDiff,
+                Downed = downed,
+                KnockedOut = knocked,
+                Revives = revives,
+                DmgDealt = dmgDealt,
+                DmgReceived = dmgReceived,
+                Looted = looted
+            };
+
+            
             matchHistory.Add(currentMatch);
 
             // Calculate Rolling Average

@@ -30,8 +30,30 @@ namespace Arc
                 string json = File.ReadAllText(historyFilePath);
                 List<MatchRecord> matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
 
+                historyGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
                 // //binding the List of MatchRecords to the DataGridView
                 historyGridView.DataSource = matchHistory;
+
+                if (historyGridView.Columns["AggroScore"] != null)
+                {
+                    historyGridView.Columns["AggroScore"].DefaultCellStyle.Format = "F2";
+                }
+
+                if (historyGridView.Columns["ScoreDifference"] != null)
+                {
+                    historyGridView.Columns["ScoreDifference"].DefaultCellStyle.Format = "F2";
+                }
+
+                if (historyGridView.Columns["DmgDealt"] != null)
+                {
+                    historyGridView.Columns["DmgDealt"].DefaultCellStyle.Format = "F2";
+                }
+
+                if (historyGridView.Columns["DmgReceived"] != null)
+                {
+                    historyGridView.Columns["DmgReceived"].DefaultCellStyle.Format = "F2";
+                }
             }
         }
 
