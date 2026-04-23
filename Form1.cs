@@ -39,7 +39,6 @@ namespace Arc
             if (!string.IsNullOrWhiteSpace(predictedAgroBox.Text) &&
                 string.IsNullOrWhiteSpace(txtDowned.Text) &&
                 string.IsNullOrWhiteSpace(txtKnocked.Text) &&
-                string.IsNullOrWhiteSpace(txtFirstStrike.Text) &&
                 string.IsNullOrWhiteSpace(txtRevives.Text) &&
                 string.IsNullOrWhiteSpace(txtDmgDealt.Text) &&
                 string.IsNullOrWhiteSpace(txtDmgRec.Text) &&
@@ -97,12 +96,11 @@ namespace Arc
             AggroSettings settings = AggroSettings.LoadFromFile(settingsFilePath);
 
             // Parse
-            double downed = 0, knocked = 0, firstStrike = 0, revives = 0;
+            double downed = 0, knocked = 0, revives = 0;
             double dmgDealt = 0, dmgReceived = 0, looted = 0;
 
             double.TryParse(txtDowned.Text, out downed);
             double.TryParse(txtKnocked.Text, out knocked);
-            double.TryParse(txtFirstStrike.Text, out firstStrike);
             double.TryParse(txtRevives.Text, out revives);
             double.TryParse(txtDmgDealt.Text, out dmgDealt);
             double.TryParse(txtDmgRec.Text, out dmgReceived);
@@ -111,7 +109,6 @@ namespace Arc
             // Calculate THIS round's score
             double currentMatchScore = (downed * settings.DownedMultiplier) +
                                        (knocked * settings.KnockedMultiplier) +
-                                       (firstStrike * settings.FirstStrikeMultiplier) +
                                        (revives * settings.RevivedMultiplier) +
                                        (dmgDealt * settings.DmgInflictedMultiplier) +
                                        (dmgReceived * settings.DmgReceivedMultiplier) +
@@ -136,7 +133,6 @@ namespace Arc
                 AggroScore = currentMatchScore,
                 Downed = downed,
                 KnockedOut = knocked,
-                FirstStrikes = firstStrike,
                 Revives = revives,
                 DmgDealt = dmgDealt,
                 DmgReceived = dmgReceived,
@@ -200,7 +196,6 @@ namespace Arc
             // Clear Boxes
             txtDowned.Clear();
             txtKnocked.Clear();
-            txtFirstStrike.Clear();
             txtRevives.Clear();
             txtDmgDealt.Clear();
             txtDmgRec.Clear();

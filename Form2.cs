@@ -27,7 +27,6 @@ namespace Arc
 
             textDowned.Text = currentSettings.DownedMultiplier.ToString();
             textKnocked.Text = currentSettings.KnockedMultiplier.ToString();
-            textFirst.Text = currentSettings.FirstStrikeMultiplier.ToString();
             textRev.Text = currentSettings.RevivedMultiplier.ToString();
             textDMG.Text = currentSettings.DmgInflictedMultiplier.ToString();
             textDMGRec.Text = currentSettings.DmgReceivedMultiplier.ToString();
@@ -42,7 +41,6 @@ namespace Arc
             // Note to self: Fucktard, remember TryParse!!!
             if (double.TryParse(textDowned.Text, out double downed)) updatedSettings.DownedMultiplier = downed;
             if (double.TryParse(textKnocked.Text, out double knocked)) updatedSettings.KnockedMultiplier = knocked;
-            if (double.TryParse(textFirst.Text, out double first)) updatedSettings.FirstStrikeMultiplier = first;
             if (double.TryParse(textRev.Text, out double rev)) updatedSettings.RevivedMultiplier = rev;
             if (double.TryParse(textDMG.Text, out double dmg)) updatedSettings.DmgInflictedMultiplier = dmg;
             if (double.TryParse(textDMGRec.Text, out double dmgRec)) updatedSettings.DmgReceivedMultiplier = dmgRec;

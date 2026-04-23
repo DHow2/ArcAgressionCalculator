@@ -14,7 +14,6 @@ namespace Arc
         public string PredictedLobby { get; set; } = string.Empty;
         public double Downed { get; set; }
         public double KnockedOut { get; set; }
-        public double FirstStrikes { get; set; }
         public double Revives { get; set; }
         public double DmgDealt { get; set; }
         public double DmgReceived { get; set; }

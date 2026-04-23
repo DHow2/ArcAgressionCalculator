@@ -32,14 +32,12 @@
             MainWindow = new Button();
             txtDowned = new TextBox();
             txtKnocked = new TextBox();
-            txtFirstStrike = new TextBox();
             txtRevives = new TextBox();
             txtDmgDealt = new TextBox();
             txtDmgRec = new TextBox();
             txtLooted = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -76,57 +74,50 @@
             // 
             // txtDowned
             // 
-            txtDowned.Location = new Point(28, 605);
+            txtDowned.Location = new Point(26, 605);
             txtDowned.Name = "txtDowned";
-            txtDowned.Size = new Size(125, 27);
+            txtDowned.Size = new Size(123, 27);
             txtDowned.TabIndex = 23;
             // 
             // txtKnocked
             // 
-            txtKnocked.Location = new Point(201, 605);
+            txtKnocked.Location = new Point(236, 605);
             txtKnocked.Name = "txtKnocked";
-            txtKnocked.Size = new Size(125, 27);
+            txtKnocked.Size = new Size(148, 27);
             txtKnocked.TabIndex = 24;
-            // 
-            // txtFirstStrike
-            // 
-            txtFirstStrike.Location = new Point(374, 605);
-            txtFirstStrike.Name = "txtFirstStrike";
-            txtFirstStrike.Size = new Size(125, 27);
-            txtFirstStrike.TabIndex = 25;
             // 
             // txtRevives
             // 
-            txtRevives.Location = new Point(547, 605);
+            txtRevives.Location = new Point(471, 605);
             txtRevives.Name = "txtRevives";
-            txtRevives.Size = new Size(125, 27);
+            txtRevives.Size = new Size(135, 27);
             txtRevives.TabIndex = 26;
             // 
             // txtDmgDealt
             // 
-            txtDmgDealt.Location = new Point(720, 605);
+            txtDmgDealt.Location = new Point(693, 605);
             txtDmgDealt.Name = "txtDmgDealt";
-            txtDmgDealt.Size = new Size(125, 27);
+            txtDmgDealt.Size = new Size(86, 27);
             txtDmgDealt.TabIndex = 27;
             // 
             // txtDmgRec
             // 
-            txtDmgRec.Location = new Point(893, 605);
+            txtDmgRec.Location = new Point(866, 605);
             txtDmgRec.Name = "txtDmgRec";
-            txtDmgRec.Size = new Size(125, 27);
+            txtDmgRec.Size = new Size(110, 27);
             txtDmgRec.TabIndex = 28;
             // 
             // txtLooted
             // 
-            txtLooted.Location = new Point(1066, 605);
+            txtLooted.Location = new Point(1063, 605);
             txtLooted.Name = "txtLooted";
-            txtLooted.Size = new Size(125, 27);
+            txtLooted.Size = new Size(160, 27);
             txtLooted.TabIndex = 29;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(32, 566);
+            label1.Location = new Point(28, 566);
             label1.Name = "label1";
             label1.Size = new Size(121, 20);
             label1.TabIndex = 30;
@@ -135,25 +126,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(192, 566);
+            label2.Location = new Point(236, 566);
             label2.Name = "label2";
             label2.Size = new Size(148, 20);
             label2.TabIndex = 31;
             label2.Text = "Knocked out Raiders:";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(384, 566);
-            label3.Name = "label3";
-            label3.Size = new Size(86, 20);
-            label3.TabIndex = 32;
-            label3.Text = "First Strikes:";
-            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(547, 566);
+            label4.Location = new Point(471, 566);
             label4.Name = "label4";
             label4.Size = new Size(135, 20);
             label4.TabIndex = 33;
@@ -162,7 +144,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(736, 566);
+            label5.Location = new Point(693, 566);
             label5.Name = "label5";
             label5.Size = new Size(86, 20);
             label5.TabIndex = 34;
@@ -171,7 +153,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(908, 566);
+            label6.Location = new Point(866, 566);
             label6.Name = "label6";
             label6.Size = new Size(110, 20);
             label6.TabIndex = 35;
@@ -180,7 +162,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(1050, 566);
+            label7.Location = new Point(1063, 566);
             label7.Name = "label7";
             label7.Size = new Size(160, 20);
             label7.TabIndex = 36;
@@ -275,14 +257,12 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtLooted);
             Controls.Add(txtDmgRec);
             Controls.Add(txtDmgDealt);
             Controls.Add(txtRevives);
-            Controls.Add(txtFirstStrike);
             Controls.Add(txtKnocked);
             Controls.Add(txtDowned);
             Controls.Add(MainWindow);
@@ -299,14 +279,12 @@
         private Button MainWindow;
         private TextBox txtDowned;
         private TextBox txtKnocked;
-        private TextBox txtFirstStrike;
         private TextBox txtRevives;
         private TextBox txtDmgDealt;
         private TextBox txtDmgRec;
         private TextBox txtLooted;
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;

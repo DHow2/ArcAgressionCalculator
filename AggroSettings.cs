@@ -11,7 +11,6 @@ namespace Arc
     {
         public double DownedMultiplier { get; set; } = 20.0;
         public double KnockedMultiplier { get; set; } = 45.0;
-        public double FirstStrikeMultiplier { get; set; } = 30.0;
         public double RevivedMultiplier { get; set; } = -10.0;
         public double DmgInflictedMultiplier { get; set; } = 0.3;
         public double DmgReceivedMultiplier { get; set; } = -0.1;
