@@ -50,6 +50,7 @@
             predictedLobbyBox = new TextBox();
             label10 = new Label();
             RaiderNameBox = new TextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // SettingWindow
@@ -240,11 +241,22 @@
             RaiderNameBox.Text = "Raider";
             RaiderNameBox.TextAlign = HorizontalAlignment.Center;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.DarkRed;
+            label3.Location = new Point(396, 480);
+            label3.Name = "label3";
+            label3.Size = new Size(444, 20);
+            label3.TabIndex = 45;
+            label3.Text = "! Important ! Self defense will also increase your aggression score!";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1237, 741);
+            Controls.Add(label3);
             Controls.Add(RaiderNameBox);
             Controls.Add(label10);
             Controls.Add(predictedLobbyBox);
@@ -297,5 +309,6 @@
         private TextBox predictedLobbyBox;
         private Label label10;
         private TextBox RaiderNameBox;
+        private Label label3;
     }
 }
