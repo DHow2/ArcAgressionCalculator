@@ -11,7 +11,10 @@ namespace Arc
         public DateTime Date { get; set; } = DateTime.Now;
         public string RaiderName { get; set; } = string.Empty;
         public double AggroScore { get; set; }
+        public double SkillScore { get; set; }
         public double ScoreDifference { get; set; }
+        public double SkillDifference { get; set; }
+        public bool SuccessfullyExtracted { get; set; }
         public string PredictedLobby { get; set; } = string.Empty;
         public double Downed { get; set; }
         public double KnockedOut { get; set; }

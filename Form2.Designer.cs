@@ -32,13 +32,11 @@
             textKnocked = new TextBox();
             textRev = new TextBox();
             textDMG = new TextBox();
-            textDMGRec = new TextBox();
             textLooted = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label4 = new Label();
             label5 = new Label();
-            label6 = new Label();
             label7 = new Label();
             MainWindow = new Button();
             SettingWindow = new Button();
@@ -77,13 +75,6 @@
             textDMG.Name = "textDMG";
             textDMG.Size = new Size(125, 27);
             textDMG.TabIndex = 9;
-            // 
-            // textDMGRec
-            // 
-            textDMGRec.Location = new Point(21, 387);
-            textDMGRec.Name = "textDMGRec";
-            textDMGRec.Size = new Size(125, 27);
-            textDMGRec.TabIndex = 10;
             // 
             // textLooted
             // 
@@ -127,15 +118,6 @@
             label5.Size = new Size(101, 20);
             label5.TabIndex = 18;
             label5.Text = "DMG inflicted";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(168, 390);
-            label6.Name = "label6";
-            label6.Size = new Size(107, 20);
-            label6.TabIndex = 19;
-            label6.Text = "DMG Received";
             // 
             // label7
             // 
@@ -196,8 +178,6 @@
             groupBox1.Controls.Add(textRev);
             groupBox1.Controls.Add(textDMG);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(textDMGRec);
-            groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(textLooted);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
@@ -236,7 +216,7 @@
             Controls.Add(SettingWindow);
             Controls.Add(MainWindow);
             Name = "Settings";
-            Text = "Settings";
+            Text = "a";
             Load += Settings_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -248,13 +228,11 @@
         private TextBox textKnocked;
         private TextBox textRev;
         private TextBox textDMG;
-        private TextBox textDMGRec;
         private TextBox textLooted;
         private Label label1;
         private Label label2;
         private Label label4;
         private Label label5;
-        private Label label6;
         private Label label7;
         private Button MainWindow;
         private Button SettingWindow;

@@ -51,6 +51,9 @@
             label10 = new Label();
             RaiderNameBox = new TextBox();
             label3 = new Label();
+            label11 = new Label();
+            predictedSkillBox = new TextBox();
+            checkExtracted = new CheckBox();
             SuspendLayout();
             // 
             // SettingWindow
@@ -193,7 +196,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F);
-            label8.Location = new Point(241, 252);
+            label8.Location = new Point(241, 146);
             label8.Name = "label8";
             label8.Size = new Size(184, 28);
             label8.TabIndex = 39;
@@ -203,7 +206,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F);
-            label9.Location = new Point(808, 252);
+            label9.Location = new Point(808, 146);
             label9.Name = "label9";
             label9.Size = new Size(159, 28);
             label9.TabIndex = 40;
@@ -211,14 +214,14 @@
             // 
             // predictedAgroBox
             // 
-            predictedAgroBox.Location = new Point(241, 298);
+            predictedAgroBox.Location = new Point(241, 192);
             predictedAgroBox.Name = "predictedAgroBox";
             predictedAgroBox.Size = new Size(184, 27);
             predictedAgroBox.TabIndex = 41;
             // 
             // predictedLobbyBox
             // 
-            predictedLobbyBox.Location = new Point(808, 298);
+            predictedLobbyBox.Location = new Point(808, 192);
             predictedLobbyBox.Name = "predictedLobbyBox";
             predictedLobbyBox.Size = new Size(184, 27);
             predictedLobbyBox.TabIndex = 42;
@@ -251,11 +254,43 @@
             label3.TabIndex = 45;
             label3.Text = "! Important ! Self defense will also increase your aggression score!";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 12F);
+            label11.Location = new Point(522, 279);
+            label11.Name = "label11";
+            label11.Size = new Size(194, 28);
+            label11.TabIndex = 46;
+            label11.Text = "Predicted Skill Score:";
+            label11.Click += label11_Click;
+            // 
+            // predictedSkillBox
+            // 
+            predictedSkillBox.Location = new Point(522, 325);
+            predictedSkillBox.Name = "predictedSkillBox";
+            predictedSkillBox.Size = new Size(194, 27);
+            predictedSkillBox.TabIndex = 47;
+            // 
+            // checkExtracted
+            // 
+            checkExtracted.AutoSize = true;
+            checkExtracted.Location = new Point(1048, 671);
+            checkExtracted.Name = "checkExtracted";
+            checkExtracted.Size = new Size(175, 24);
+            checkExtracted.TabIndex = 48;
+            checkExtracted.Text = "Successfully Extracted";
+            checkExtracted.UseVisualStyleBackColor = true;
+            checkExtracted.CheckedChanged += checkExtracted_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1237, 741);
+            Controls.Add(checkExtracted);
+            Controls.Add(predictedSkillBox);
+            Controls.Add(label11);
             Controls.Add(label3);
             Controls.Add(RaiderNameBox);
             Controls.Add(label10);
@@ -310,5 +345,8 @@
         private Label label10;
         private TextBox RaiderNameBox;
         private Label label3;
+        private Label label11;
+        private TextBox predictedSkillBox;
+        private CheckBox checkExtracted;
     }
 }

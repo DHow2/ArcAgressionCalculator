@@ -9,15 +9,17 @@ namespace Arc
 {
     public class AggroSettings
     {
-        public double DownedMultiplier { get; set; } = 20.0;
-        public double KnockedMultiplier { get; set; } = 45.0;
+        public double DownedMultiplier { get; set; } = 50.0;
+        public double KnockedMultiplier { get; set; } = 50.0;
         public double RevivedMultiplier { get; set; } = -10.0;
-        public double DmgInflictedMultiplier { get; set; } = 0.3;
-        public double DmgReceivedMultiplier { get; set; } = -0.1;
-        public double LootedMultiplier { get; set; } = 10.0;
+        public double DmgInflictedMultiplier { get; set; } = 0.1;
+        public double LootedMultiplier { get; set; } = 15.0;
         public int RollingAverageCount { get; set; } = 10;
         public double ZeroDamage { get; set; } = -20.0;
-
+        public double SkillKOsMultiplier { get; set; } = 50.0;
+        public double SkillEfficiencyMultiplier { get; set; } = 10.0;
+        public double SkillExtractBonus { get; set; } = 100.0;
+        public double SkillExtractPenalty { get; set; } = -50.0;
         public void SaveToFile(string filePath)
         {
             // ->WriteIndented makes JSON easily readable with notepad++

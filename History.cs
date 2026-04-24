@@ -54,6 +54,14 @@ namespace Arc
                 {
                     historyGridView.Columns["DmgReceived"].DefaultCellStyle.Format = "F2";
                 }
+                if (historyGridView.Columns["SkillScore"] != null)
+                {
+                    historyGridView.Columns["SkillScore"].DefaultCellStyle.Format = "F2";
+                }
+                if (historyGridView.Columns["SkillDifference"] != null)
+                {
+                    historyGridView.Columns["SkillDifference"].DefaultCellStyle.Format = "F2";
+                }
             }
         }
 

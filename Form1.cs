@@ -107,26 +107,35 @@ namespace Arc
             double.TryParse(txtLooted.Text, out looted);
 
             // Calculate THIS round's score
-            double currentMatchScore = (downed * settings.DownedMultiplier) +
+            double currentAggroScore = (downed * settings.DownedMultiplier) +
                                        (knocked * settings.KnockedMultiplier) +
                                        (revives * settings.RevivedMultiplier) +
                                        (dmgDealt * settings.DmgInflictedMultiplier) +
-                                       (dmgReceived * settings.DmgReceivedMultiplier) +
                                        (looted * settings.LootedMultiplier);
 
-            // Deduct Agro if zero DMG was dealt in a match
-            if (dmgDealt == 0)
+            if (dmgDealt == 0) currentAggroScore += settings.ZeroDamage;
+            if (currentAggroScore < 0) currentAggroScore = 0;
+
+            // Calculate Skill Score
+            // Prevent dividing by zero if the player took a perfect 0 damage
+            double safeDamageReceived = dmgReceived > 0 ? dmgReceived : 1.0;
+            double combatEfficiency = dmgDealt / safeDamageReceived;
+
+            double currentSkillScore = (knocked * settings.SkillKOsMultiplier) +
+                                       (combatEfficiency * settings.SkillEfficiencyMultiplier);
+
+            // Grab checkbox state and apply extraction bonus/penalty
+            bool extracted = checkExtracted.Checked;
+            if (extracted)
             {
-                currentMatchScore += settings.ZeroDamage; 
+                currentSkillScore += settings.SkillExtractBonus;
+            }
+            else
+            {
+                currentSkillScore += settings.SkillExtractPenalty;
             }
 
-            // Prevent Scores below zero.
-            if (currentMatchScore < 0)
-            {
-                currentMatchScore = 0;
-            }
-
-            // Load History and add this match
+            // Load history & calc dif
             string historyFilePath = "history.json";
             List<MatchRecord> matchHistory = new List<MatchRecord>();
 
@@ -136,21 +145,25 @@ namespace Arc
                 matchHistory = JsonSerializer.Deserialize<List<MatchRecord>>(json) ?? new List<MatchRecord>();
             }
 
-            // Calculate Score Difference from previous match
-            double scoreDiff = 0;
+            double aggroDiff = 0;
+            double skillDiff = 0;
 
             if (matchHistory.Count > 0)
             {
                 MatchRecord previousMatch = matchHistory.Last();
-                scoreDiff = currentMatchScore - previousMatch.AggroScore;
+                aggroDiff = currentAggroScore - previousMatch.AggroScore;
+                skillDiff = currentSkillScore - previousMatch.SkillScore;
             }
 
-            // Create MatchRecord for this round
+            // Create match record
             MatchRecord currentMatch = new MatchRecord
             {
                 RaiderName = RaiderNameBox.Text.Trim(),
-                AggroScore = currentMatchScore,
-                ScoreDifference = scoreDiff,
+                AggroScore = currentAggroScore,
+                SkillScore = currentSkillScore,
+                ScoreDifference = aggroDiff,
+                SkillDifference = skillDiff,
+                SuccessfullyExtracted = extracted,
                 Downed = downed,
                 KnockedOut = knocked,
                 Revives = revives,
@@ -159,7 +172,7 @@ namespace Arc
                 Looted = looted
             };
 
-            
+
             matchHistory.Add(currentMatch);
 
             // Calculate Rolling Average
@@ -169,10 +182,15 @@ namespace Arc
                 .TakeLast(n)
                 .Average(m => m.AggroScore);
 
+            double rollingSkillAverage = matchHistory
+                .TakeLast(n)
+                .Average(m => m.SkillScore);
+
             // Update UI with the AVERAGE Score
             predictedAgroBox.Text = rollingAverage.ToString("0.00");
+            predictedSkillBox.Text = rollingSkillAverage.ToString("0.00");
 
-            if (rollingAverage < 10)
+            if (rollingAverage < 15)
             {
                 predictedLobbyBox.Text = "Carebear Lobby";
             }
@@ -197,6 +215,7 @@ namespace Arc
             if (RaiderNameBox.Text.Trim().Equals("Ramge", StringComparison.OrdinalIgnoreCase))
             {
                 predictedLobbyBox.Text = "Extreme PVP Lobby";
+                predictedSkillBox.Text = "-30";
             }
 
             // Finalize current MatchRecord with lobby prediction and save to JSON
@@ -220,6 +239,16 @@ namespace Arc
             this.Hide();
             historyPage.ShowDialog();
             this.Show();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkExtracted_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
